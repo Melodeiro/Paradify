@@ -407,6 +407,16 @@ function populateBottom() {
 
 }
 
+function populateOpenInWeb() {
+
+    if (inIframe()) {
+        $('.custom-open-in-web').show();
+    } else {
+        $('.custom-open-in-web').hide();
+    }
+
+}
+
 function redirectToLogin(url) {
 
     this.loginWindow = window.open(url, 'self', 'height=500,width=450');

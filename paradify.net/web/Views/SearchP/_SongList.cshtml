@@ -4,10 +4,10 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col"><button title="Add all songs to playlist" type="button" class="btn btn-success" onclick="selectAll('@string.Join(",", Model.Select(t => t.Id))')"> + </button></th>
+                <th scope="col" style="width:47px">#</th>
+                <th scope="col" style="width:54px;"><button title="Add all songs to playlist" type="button" class="btn btn-success" onclick="selectAll('@string.Join(",", Model.Select(t => t.Id))')"> + </button></th>
                 <th scope="col">Title - Artist</th>
-                <th scope="col" style="width: 116px;text-align: right;">Recommend</th>
+                <th scope="col" style="width:100px"></th>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +15,7 @@
             {
             
                     <tr>
-                        <td scope="row" style="width:47px;">
+                        <td scope="row">
                             <div class="number-playback-pic" playback="@track.PreviewUrl"  trackName="@HttpUtility.JavaScriptStringEncode(track.Name)">
                                 <span class="player">
                                     <span class="play-pause"></span>
@@ -30,7 +30,7 @@
                                 }
                             </div>
                         </td>
-                        <td style="width:54px;">
+                        <td>
                             <button title="Add to playlist" type="button" class="btn btn-success" onclick="javascript:select('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)', true, false);"> + </button>
                          
                         </td>
@@ -41,8 +41,9 @@
                         <td>
                         <span class="trackName">@Html.RouteLink(track.Name, "Search", new { q = trackNameArtistNames }, new { title = trackNameArtistNames })</span> -
                         <span class="artistName">@artistNames</span>
-                        <td style="text-align:right">
-                            <button type="button" class="btn btn-info" onclick="javascript:recommend('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)');"> R </button>
+                        <td>
+                            <a href="@string.Format(Constants.SpotifyTrackUrlPattern, track.Id)" target="_blank" title="Open in Spotify"><img src="~/src/web/images/spotify.png" width="38" height="38"/></a>
+                            <button type="button" title="Recommend similar" class="btn btn-info" onclick="javascript:recommend('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)');"> R </button>
                         </td>
                     </tr>
             

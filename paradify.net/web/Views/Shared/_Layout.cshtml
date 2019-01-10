@@ -6,28 +6,7 @@
     <meta name="description" content="Paradify helps you to find songs and add them to your spotify playlist easly">
     <meta name="keywords" content="Spotify, Songs, discovery, playlist, chrome Extension, recommendations, new released">
     @RenderSection("MetaTags", required: false)
-    <script src="~/src/web/js/jquery-3.3.1.min.js?v=19"></script>
-    <script src="~/src/web/js/bootstrap.min.js?v=19"></script>
-    <script src="~/src/web/js/bootstrap-notify.min.js?v=19"></script>
-    <script src="~/src/web/js/bootstrapCustom.js?v=19.3"></script>
-    <script src="~/src/web/js/playback.js?v=19"></script>
-    <script src="~/src/web/js/ga-track.js?v=19.3"></script>
-    <link rel='stylesheet' href='~/src/web/cssChrome/bootstrap.min.css?v=19' type='text/css' />
-    <link rel='stylesheet' href='~/src/web/cssChrome/bootstrapCustom.css?v=19.5' type='text/css' />
-    <link rel='stylesheet' href='~/src/web/cssChrome/searchresult.css?v=19.3' type='text/css' />
-    <link rel='stylesheet' href='~/src/web/cssChrome/animate.css?v=19' type='text/css' />
-    <link rel='stylesheet' href='~/src/web/cssChrome/playback.css?v=19' type='text/css' />
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/bocdilfmhiggklhdifohjfghbdncgele">
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3218083-16"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-3218083-16');
-    </script>
+    @Html.Partial("_ScriptsStyles")
 </head>
 <body>
 
@@ -40,13 +19,18 @@
                 <li class="nav-item active custom-li-me" id="profile_login">
                 </li>
             </ul>
+            <a class="custom-open-in-web" href="@Request.Url.ToString()" target="_blank">Fullscreen</a>
+            <script>
+                populateOpenInWeb();
+            </script>
             @using (Html.BeginForm("Index", "SearchP", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
-            {
-                <input id="q" name="q" class="form-control mr-sm-2 form-control is-valid custom-search" type="text" placeholder="Search like Hello Adele" value="@(Request.QueryString["q"])">
-                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-            }
+    {
+        <input id="q" name="q" class="form-control mr-sm-2 form-control is-valid custom-search" type="text" placeholder="Search like Hello Adele" value="@(Request.QueryString["q"])">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+}
 
         </nav>
+      
         <div class="row">
 
             @RenderBody()
@@ -56,6 +40,16 @@
             @Html.Partial("_Bottom")
             <script>populateBottom();</script>
         </div>
+        <footer id="footer">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <ul class="list-unstyled">
+                        <li class="float-lg-right"><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <div class="modal">
@@ -78,7 +72,8 @@
                 </div>
             </div>
         </div>
-
+       
     </div>
+    
 </body>
 </html>

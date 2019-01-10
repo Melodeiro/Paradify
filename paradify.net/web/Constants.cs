@@ -15,6 +15,7 @@ namespace web
         public static string RedirectUri { get; set; }
         public static string StateKey { get; set; }
         public static string Scope { get; set; }
+        public static string SpotifyTrackUrlPattern { get; }
         public static string Domain { get; set; }
         public static string FullTitle = "Paradify - Spotify Discovery - Songs to Spotify";
 
@@ -42,6 +43,7 @@ namespace web
             RedirectUri = ConfigurationManager.AppSettings["redirectUri"];
             StateKey = ConfigurationManager.AppSettings["stateKey"];
             Scope = ConfigurationManager.AppSettings["scope"];
+            SpotifyTrackUrlPattern = ConfigurationManager.AppSettings["spotifyTrackUrlPattern"];
         }
     }
 }

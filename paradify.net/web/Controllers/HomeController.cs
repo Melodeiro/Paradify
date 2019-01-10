@@ -53,6 +53,11 @@ namespace web.Controllers
             return View();
         }
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
         private string GetCountryCodeOrDefault(string country, string profileCountry)
         {
             string result = Constants.DefaultCountryCode;

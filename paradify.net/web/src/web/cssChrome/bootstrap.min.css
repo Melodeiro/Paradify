@@ -534,6 +534,17 @@ pre {
     margin-right: auto;
     margin-left: auto
 }
+@media (min-width: 250px) {
+    .container {
+        max-width: 245px
+    }
+}
+
+@media (min-width: 350px) {
+    .container {
+        max-width: 345px
+    }
+}
 
 @media (min-width: 576px) {
     .container {
