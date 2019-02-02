@@ -1,8 +1,6 @@
 ﻿using log4net;
 using SpotifyAPI.Web.Models;
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using web.Filters;
 using web.Models;

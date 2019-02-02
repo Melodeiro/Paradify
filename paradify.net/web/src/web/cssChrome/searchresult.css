@@ -35,3 +35,7 @@
     vertical-align: inherit !important;
     padding: 0.40em;
 }
+#footer .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}

@@ -199,6 +199,7 @@
     <Compile Include="Services\Implementations\SessionService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\IParadifyService.cs" />
+    <Compile Include="Services\ISlackService.cs" />
     <Compile Include="Services\ITokenCookieService.cs" />
     <Compile Include="Services\ISessionService.cs" />
     <Compile Include="Services\IPlaylistService.cs" />
@@ -209,6 +210,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implementations\PlaylistService.cs" />
+    <Compile Include="Models\SlackMessageModel.cs" />
+    <Compile Include="Services\SlackService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
