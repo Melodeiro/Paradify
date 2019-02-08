@@ -25,7 +25,7 @@
             </script>
             @using (Html.BeginForm("Index", "SearchP", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
     {
-        <input id="q" name="q" class="form-control mr-sm-2 form-control is-valid custom-search" type="text" placeholder="Search like Hello Adele" value="@(Request.QueryString["q"])">
+        <input id="q" name="q" class="form-control mr-sm-2 form-control is-valid custom-search" type="text" placeholder="Start searching a song" value="@(Request.QueryString["q"])">
         <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
 }
 
