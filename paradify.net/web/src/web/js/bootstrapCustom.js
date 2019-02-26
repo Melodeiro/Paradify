@@ -3,6 +3,8 @@
     recentlyPlayedTracks: null,
     savedTracks: null
 };
+var searchPath = "";
+
 function selectAll(trackIds) {
     $("#input_trackId").val(trackIds);
     openPlaylistPopup('All songs');
@@ -82,7 +84,7 @@ function addToPlaylist(playlistId) {
     customNotify.notify('Adding...');
     $.ajax({
         type: "POST",
-        url: "/Search/Async/Playlists",
+        url: this.searchPath + "/Async/Playlists",
         data: dataJson,
         success: function (errorResponse) {
             if (errorResponse == null || errorResponse.error == null) {
@@ -126,54 +128,37 @@ function openPlaylistPopup(trackName) {
 }
 
 function loadPlaylist() {
-    $.ajax({
-        type: "GET",
-        url: "/Search/Async/Playlists",
+    setTimeout(
+        function () {
+            $.ajax({
+                type: "GET",
+                url: this.searchPath + "/Async/Playlists",
 
-        success: function (response) {
-            if (response != null && response != '') {
-                variable.playlist = response;
-            }
-        },
-        error: function (xhr, textStatus, err) { }
-    });
+                success: function (response) {
+                    if (response != null && response != '') {
+                        variable.playlist = response;
+                    }
+                },
+                error: function (xhr, textStatus, err) { }
+            });
+        }
+        , 500
+    );
 }
 
 function loadSavedTracks(callback) {
-    $.ajax({
-        type: "GET",
-        url: "/Search/Async/SavedTracks",
 
-        success: function (response) {
-            if (response != null && response != '') {
-                variable.savedTracks = response;
-                callback();
-            }
-        },
-        error: function (xhr, textStatus, err) { }
-    });
 }
 
 
 function loadRecentlyPlayedTracksShort(callback) {
-    $.ajax({
-        type: "GET",
-        url: "/Search/Async/RecentlyPlayedTracksShort",
-
-        success: function (response) {
-            if (response != null && response != '') {
-                variable.recentlyPlayedTracks = response;
-                callback();
-            }
-        },
-        error: function (xhr, textStatus, err) { }
-    });
+ 
 }
 
 function loadRecentlyPlayedTracks(callback) {
     $.ajax({
         type: "GET",
-        url: "/Search/Async/RecentlyPlayedTracks",
+        url: this.searchPath + "/Async/RecentlyPlayedTracks",
 
         success: function (response) {
             if (response != null && response != '') {
@@ -188,7 +173,7 @@ function loadRecentlyPlayedTracks(callback) {
 function loadRecommendedSongs(trackId, artistId, callback) {
     $.ajax({
         type: "GET",
-        url: "/Search/Async/Recommendations",
+        url: this.searchPath + "/Async/Recommendations",
         data: {
             "trackId": trackId,
             "artistId": artistId
@@ -311,7 +296,7 @@ function loadSearch() {
 function loadNewReleasedSong(countryCode, callback) {
     $.ajax({
         type: "GET",
-        url: "/Search/Async/GetNewReleasedTracks",
+        url: this.searchPath + "/Async/GetNewReleasedTracks",
         data: {
             "countryCode": countryCode
         },
@@ -329,7 +314,7 @@ function loadNewReleasedSong(countryCode, callback) {
 function loadCountries(callback) {
     $.ajax({
         type: "GET",
-        url: "/Search/Async/Countries",
+        url: this.searchPath + "/Async/Countries",
         data: {
         },
         success: function (response) {

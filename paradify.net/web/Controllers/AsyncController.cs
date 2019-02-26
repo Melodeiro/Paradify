@@ -71,6 +71,11 @@ namespace web.Controllers
 
             PrivateProfile profile = GetMe(token);
 
+            if (profile == null || profile.Id == null)
+            {
+                return null;
+            }
+
             var playlists = base.GetPlaylists(token, profile.Id);
 
             if (playlists != null && playlists.Items != null && playlists.Items.Count > 0)
@@ -115,7 +120,6 @@ namespace web.Controllers
             {
                 return null;
             }
-            PrivateProfile profile = GetMe(token);
 
             var paginSavedTracks = _paradifyService.GetSavedTracks(token, 10);
 

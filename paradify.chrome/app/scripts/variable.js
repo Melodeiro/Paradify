@@ -1,5 +1,5 @@
 ﻿var defaults = {
-    url: "https://www.paradify.com/Search/",
+    url: "https://paradify.azurewebsites.net/",
     searchJsonPath: "searchJson",
     searchPath: "searchp",
     searchBoxClass: ".searchBox",
@@ -9,7 +9,7 @@
     resultId: "#result",
     formId: "#form",
     waitingId: "#waiting",
-    events: {ENTER: 13}
+    events: { ENTER: 13 }
 }
 
 String.format = function () {
@@ -59,8 +59,8 @@ function getPageName(url) {
     else if (url.indexOf('open.spotify') > -1) {
         pageName = 'spotify'
     }
-    
-    
+
+
     return pageName;
 }
 
@@ -69,7 +69,7 @@ function getPageName(url) {
 
 function readNowPlayingText(pageName) {
     if (pageName == 'radioparadise' && window.getSelection().toString().trim() != "") {
-        var result = {track: window.getSelection().toString().trim(), artist: ""};
+        var result = { track: window.getSelection().toString().trim(), artist: "" };
         return result;
     }
     else if (pageName == 'radioparadise') {
@@ -105,7 +105,7 @@ function readNowPlayingText(pageName) {
     } else if (pageName == 'spotify') {
         return readSpotify();
     }
-    
+
     else {
         return null;
     }
@@ -118,7 +118,7 @@ function readRadioParadise() {
         var c = innerDoc.getElementsByClassName("song_title");
         var data = c[3].innerText;
         var arr = data.split('—');
-        var result = {track: arr[0].replace(/^\s*|\s*$/g, ''), artist: arr[1].replace(/^\s*|\s*$/g, '')};
+        var result = { track: arr[0].replace(/^\s*|\s*$/g, ''), artist: arr[1].replace(/^\s*|\s*$/g, '') };
         return result;
     }
     return null;
@@ -131,7 +131,7 @@ function readPowerfm() {
     var currentSongDiv = document.getElementsByClassName('artistTitle')[0].innerText;
     var artist = currentSongDiv;
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
     return result;
 }
 
@@ -147,7 +147,7 @@ function readKarnaval() {
 
     var artist = document.getElementsByClassName('sub_title')[0].firstChild.firstChild.innerText;
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
 
     return result;
 }
@@ -158,7 +158,7 @@ function readsoundCloud() {
     var artist = document.getElementsByClassName('playbackSoundBadge__lightLink sc-link-light sc-truncate')[0].getAttribute("title");
     var result;
     if (track != '') {
-        result = {track: track, artist: artist};
+        result = { track: track, artist: artist };
     }
     return result;
 }
@@ -167,7 +167,7 @@ function readVimeo() {
     var track = document.title.trim().replace('on Vimeo', '');
     var result;
     if (track != '') {
-        result = {track: track, artist: ''};
+        result = { track: track, artist: '' };
     }
     return result;
 }
@@ -187,11 +187,11 @@ function readKralmuzik() {
     var artist = currentSongDiv.getElementsByTagName('h1')[0].innerText;
 
 
-    radio-stream-next-song
+    radio - stream - next - song
 
 
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
 
     return result;
 }
@@ -199,7 +199,7 @@ function readKralmuzik() {
 function readTunein() {
     var track = document.getElementById('playerTitle').innerHTML;
 
-    var result = {track: track};
+    var result = { track: track };
 
     return result;
 }
@@ -207,45 +207,45 @@ function readTunein() {
 function readJango() {
     var track = document.getElementById('current-song').innerHTML;
     var artist = document.getElementById('player_current_artist').getElementsByTagName('a')[0].innerText;
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
     return result;
 }
 
 function readQMusic() {
     var track = document.getElementsByClassName('current-track')[0].getElementsByClassName('title')[0].innerHTML;
-    
+
     var artist = document.getElementsByClassName('current-track')[0].getElementsByClassName('artist')[0].innerHTML;
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
 
     return result;
 }
 function readDeezer() {
     var track = document.getElementsByClassName('player-track-title')[0].getElementsByClassName('player-track-link')[0].innerHTML;
-    
+
     var artist = document.getElementsByClassName('player-track-artist')[0].getElementsByClassName('player-track-link')[0].innerHTML;
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
 
     return result;
 }
 
 function readRadioswissjazz() {
     var track = document.getElementsByClassName('current-airplay')[0].getElementsByClassName('titletag')[0].innerHTML;
-    
+
     var artist = document.getElementsByClassName('current-airplay')[0].getElementsByClassName('artist')[0].innerHTML;
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
 
     return result;
 }
 
 function readSpotify() {
     var track = document.getElementsByClassName('track-info__name ellipsis-one-line')[0].getElementsByTagName('a')[0].innerHTML;
-    
+
     var artist = document.getElementsByClassName('track-info__artists')[0].getElementsByTagName('a')[0].innerHTML;
 
-    var result = {track: track, artist: artist};
+    var result = { track: track, artist: artist };
 
     return result;
 }
