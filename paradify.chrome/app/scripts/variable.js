@@ -59,6 +59,9 @@ function getPageName(url) {
     else if (url.indexOf('open.spotify') > -1) {
         pageName = 'spotify'
     }
+    else if (url.indexOf('beatport.com') > -1) {
+        pageName = 'beatport'
+    }
 
 
     return pageName;
@@ -104,8 +107,9 @@ function readNowPlayingText(pageName) {
         return readRadioswissjazz();
     } else if (pageName == 'spotify') {
         return readSpotify();
+    } else if (pageName == 'beatport') {
+        return readBeatport();
     }
-
     else {
         return null;
     }
@@ -244,6 +248,16 @@ function readSpotify() {
     var track = document.getElementsByClassName('track-info__name ellipsis-one-line')[0].getElementsByTagName('a')[0].innerHTML;
 
     var artist = document.getElementsByClassName('track-info__artists')[0].getElementsByTagName('a')[0].innerHTML;
+
+    var result = { track: track, artist: artist };
+
+    return result;
+}
+
+function readBeatport() {
+    var track = document.getElementsByClassName('primary-title')[0].innerHTML;
+
+    var artist = document.getElementsByClassName('track-artist')[0].getElementsByTagName('a')[0].innerHTML;
 
     var result = { track: track, artist: artist };
 
