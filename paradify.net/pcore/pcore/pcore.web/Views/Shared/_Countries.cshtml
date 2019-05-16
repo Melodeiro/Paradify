@@ -1,0 +1,22 @@
+﻿@using web.Models
+@model List<Country>
+<div class="form-group" id="select-countries">
+    <select class="custom-select col-lg-4">
+        <option selected="">Country</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.Code">@item.Name</option>
+        }
+    </select>
+    <script>
+        function selectCountry(countryCode) {
+            $('.custom-select').val(countryCode);
+        }
+
+        function initCountries() {
+            $('.custom-select').change(function () {
+                country_Onchanged($('#select-countries option:selected').val());
+            });
+        }
+    </script>
+</div>

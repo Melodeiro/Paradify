@@ -1,0 +1,17 @@
+﻿<p style="text-align:center;">
+    <button type="button" class="btn btn-success custom-link-login-popup"
+            onclick="redirectToLogin('@Url.Action("Index", "Authorize", new { fromIFrame = true })')">
+        Login on Spotify
+    </button>
+    <button type="button" class="btn btn-success custom-link-login"
+            onclick="javascript:location.href = '@(Url.Action("Index", "Authorize"))'">
+        Login on Spotify
+    </button>
+
+</p>
+<p style="color:green">
+    Parafiy does <b>NOT</b> keep any username or password, you will be redirected to Spotify login page
+</p>
+<script>
+    populateLoginLinks();
+</script>

@@ -1,0 +1,41 @@
+.track-image {
+    width: 35px;
+    border-radius: 100%;
+}
+
+.trackName {
+}
+
+ 
+
+
+.custom-list-group-item-playlist img {
+    width: 75px;
+}
+.custom-tab-content {
+    margin-top: -15px !important;
+}
+
+/*.custom-add-to-playlist-link {
+    text-decoration: none;
+    font-weight:bold;
+}
+
+    .custom-add-to-playlist-link:hover {
+        text-decoration: none;
+    }*/
+
+
+.span-selected-song {
+    margin: 9px 0 0 13px;
+    color: #EB6864;
+}
+
+.table th, .table td {
+    vertical-align: inherit !important;
+    padding: 0.40em;
+}
+#footer .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}

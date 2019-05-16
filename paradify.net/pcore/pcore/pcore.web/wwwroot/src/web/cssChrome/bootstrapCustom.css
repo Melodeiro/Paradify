@@ -1,0 +1,72 @@
+﻿body {
+    background-color: white !important;
+}
+
+.center {
+    text-align: center;
+}
+
+.jumbotron {
+    /*padding: 2% 2%;*/
+    background-color: white !important;
+}
+
+.trackName {
+    /*color: black !important;*/
+}
+
+.top-bar {
+    padding: 7px;
+    height: 100px;
+}
+
+.body {
+    padding: 7px;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.profile_pic {
+    width: 43px;
+    border-radius: 100%;
+}
+
+.profile_login {
+    display: none;
+}
+
+.ul-supported-web-sites {
+    display: inline;
+    list-style: none;
+    padding: 0;
+}
+
+    .ul-supported-web-sites li {
+        display: inline;
+    }
+
+    .ul-supported-web-sites li + li:before {
+        content: ", ";
+    }
+.currently-playing {
+    text-align:right;
+}
+.image-playing {
+    width: 20px;
+}
+
+@media (min-width: 450px) and (max-width: 600px) {
+    .form-inline {
+        width:100%;
+    }
+
+    .form-inline input {
+        width: 80%;
+    }
+
+        .form-inline button {
+            width: 20%;
+        }
+}

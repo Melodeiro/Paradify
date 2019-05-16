@@ -1,0 +1,10 @@
+﻿@using SpotifyAPI.Web.Models
+@using web.Models
+@using System.Web
+@model PlaybackContext
+
+@if (Model != null && Model.Item != null && !string.IsNullOrEmpty(Model.Item.Name))
+{
+    <span>@string.Format("{0} - {1}", Model.Item.Name, Model.Item.Artists[0].Name) 
+    <img class="image-playing" src="~/src/web/images/playing1.png" /></span>
+}

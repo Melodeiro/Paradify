@@ -1,0 +1,83 @@
+﻿@using web
+@using System.Web
+@using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Paradify - Youtube to Spotify</title>
+    <meta name="description" content="Paradify helps you to find songs and add them to your spotify playlist easly">
+    <meta name="keywords" content="Spotify, Songs, discovery, playlist, chrome Extension, recommendations, new released">
+    @RenderSection("MetaTags", required: false)
+    @Html.Partial("_ScriptsStyles")
+</head>
+<body>
+
+    <div class="jumbotron">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a href="~/"><img src="~/src/web/images/head-logo.png" /></a>
+            <a class="nav-link" href="~/">Paradify</a>
+            <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item active custom-li-me" id="profile_login">
+                </li>
+            </ul>
+            <a class="custom-open-in-web" target="_blank">Fullscreen</a>
+            <script>populateOpenInWeb();</script>
+            @using (Html.BeginForm("Index", "SearchP", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
+            {
+                <input id="q" name="q" class="form-control mr-sm-2 form-control is-valid custom-search" type="text" placeholder="Start searching a song" value="@(Context.Request.Query["q"])">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            }
+
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-12 currently-playing" id="currently-playing"></div>
+            @RenderBody()
+
+        </div>
+        <footer id="footer">
+            <div class="row">
+                <div class="col-lg-12">
+
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>$(document).ready(function () {
+            customModal.getPlayingTrack();
+        });</script>
+
+    <div class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="custom-modal-body-p">
+
+                    </p>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <input type="hidden" id="input_trackId" />
+    <input type="hidden" id="input_trackName" />
+    <input type="hidden" id="input_from" />
+
+</body>
+</html>

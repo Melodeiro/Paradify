@@ -1,0 +1,61 @@
+﻿@using SpotifyAPI.Web.Models
+@using web.Models;
+@using System.Web
+@model CustomSimpleTrack
+
+@if (Model != null && Model.Paging != null && Model.Paging.Items != null)
+{
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col"><button title="Add all songs to playlist" type="button" class="btn btn-success" onclick="selectAll('@string.Join(",", Model.Paging.Items.Select(t => t.Id))')"> + </button></th>
+            <th scope="col">Title - Artist - Album</th>
+            <th scope="col" style="width: 116px;text-align: right;">Recommend</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (SimpleTrack item in Model.Paging.Items)
+        {
+            var track = item;
+            var album = Model.TrackAlbumIds.FirstOrDefault(a => a.Key == item.Id);
+            <tr>
+                <td scope="row" style="width:47px;">
+                    @if(@track.PreviewUrl !=null && @track.PreviewUrl.Length > 0) { 
+                        <div class="number-playback-pic" playback="@track.PreviewUrl"  trackName="@HttpUtility.JavaScriptStringEncode(track.Name)">
+                            <span class="player">
+                                <span class="play-pause"></span>
+                            </span>
+                            @if (album.Value.Images.Count > 0)
+                            {
+                                <img class="track-image" src="@album.Value.Images[0].Url" preview-url="@track.PreviewUrl" />
+                            }
+                            else
+                            {
+                                <img class="track-image" src="~/src/web/images/head-logo.png" preview-url="@track.PreviewUrl" />
+                            }
+                        </div>
+                    }
+                </td>
+                <td style="width:54px;">
+                    <button title="Add to playlist" type="button" class="btn btn-success" onclick="javascript:select('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)');"> + </button>
+
+                </td>
+                @{ 
+                    var artistNames = string.Join(" - ", track.Artists.Select(a => a.Name));
+                    var trackNameArtistNames = string.Format("{0} - {1}", track.Name, artistNames);
+                }
+                
+                <td><span class="trackName">@Html.RouteLink(track.Name, "Search", new { q = trackNameArtistNames }, new { title = trackNameArtistNames })</span> -
+                <span class="artistName">@artistNames</span> -
+                <span>@album.Value.Name</span></td>
+               
+                <td style="text-align:right">
+                    <button type="button" class="btn btn-info" onclick="javascript:recommend('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)');"> R </button>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table> 
+}

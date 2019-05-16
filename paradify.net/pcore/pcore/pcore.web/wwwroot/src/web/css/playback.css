@@ -1,0 +1,30 @@
+.play {
+    background-image: url("../images/play-white.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pause {
+    background-image: url("../images/pause-white.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.player {
+    width: 55px;
+    height: 55px;
+    z-index: 8;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+    .player .play-pause {
+        width: 55px;
+        height: 55px;
+        position: absolute;
+        z-index: 9;
+        left: 0;
+        position: absolute;
+        top: 8px;
+    }
