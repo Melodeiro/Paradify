@@ -1,5 +1,5 @@
 ﻿var defaults = {
-    url: "https://paradify.azurewebsites.net/",
+    url: "http://www.paradify.com/",
     searchJsonPath: "searchJson",
     searchPath: "searchp",
     searchBoxClass: ".searchBox",

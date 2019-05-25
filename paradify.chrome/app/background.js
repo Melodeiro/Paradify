@@ -2,7 +2,7 @@ if (!localStorage.getItem('install_time')) {
 
     var now = new Date().getTime();
     localStorage.setItem('install_time', now);
-    chrome.tabs.create({ url: "https://paradify.azurewebsites.net/Home/Installed" });
+    chrome.tabs.create({ url: "http://www.paradify.com" });
 
 }
 

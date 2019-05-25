@@ -57,7 +57,9 @@ var gaEvent = {
         canceledForAddPlaylist: function (trackName) {
             this.ga('send', 'event', 'Track', 'canceledForAddPlaylist', decodeURIComponent(trackName));
         },
-
+        selectedToAddPlaylistButLoging: function () {
+            this.ga('send', 'event', 'Track', 'SelectedToAddPlaylistButLoging', '');
+        },
         ga: function (del, del2, eventName, categoryName, label) {
             gtag('event', eventName, {
                 'event_category': categoryName,
