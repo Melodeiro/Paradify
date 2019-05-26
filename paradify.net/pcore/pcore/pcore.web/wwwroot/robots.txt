@@ -1,2 +1,4 @@
-User-agent:GoogleBot
+User-agent: *
+
 Disallow: /SearchP
+Disallow: /Authorize
