@@ -24,9 +24,7 @@
   <ItemGroup>
     <Content Remove="Views\SearchPOld\Index2.cshtml" />
     <Content Remove="Views\SearchPOld\PlaylistPartial.cshtml" />
-    <Content Remove="Views\Home\Installed.cshtml" />
     <Content Remove="Views\Home\Histories.cshtml" />
-    <Content Remove="Views\Home\Contact.cshtml" />
     <Content Remove="Views\web.config" />
     <Content Remove="pub\web.config" />
     <Content Remove="out\out\web.config" />

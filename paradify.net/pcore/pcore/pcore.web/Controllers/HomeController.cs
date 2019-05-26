@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using pcore.web;
 using web.Filters;
 using web.Services;
+using System;
     
 namespace web.Controllers
 {
@@ -26,6 +27,7 @@ namespace web.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.HomeUrl = Settings.BaseAppUrl;
             return View();
         }
 
@@ -37,6 +39,12 @@ namespace web.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public ActionResult Env()
+        {
+
+            return View(Settings);
         }
     }
 }

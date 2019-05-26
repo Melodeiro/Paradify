@@ -2,4 +2,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model web.Models.HomeModel
+@using pcore.web
+
+@section MetaTags {
+    @if (!string.IsNullOrEmpty(ViewBag.HomeUrl))
+    {
+        <link rel="canonical" href="@(ViewBag.HomeUrl)">
+    }
+}

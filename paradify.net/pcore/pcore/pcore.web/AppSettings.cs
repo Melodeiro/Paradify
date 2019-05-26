@@ -1,9 +1,15 @@
-﻿namespace pcore.web
+﻿using System;
+
+namespace pcore.web
 {
     public class AppSettings
     {
         public string BaseAppUrl { get; set; }
-        public string ClientSecret { get; set; }
+        public string ClientSecret { get
+            {
+                return Environment.GetEnvironmentVariable(nameof(this.ClientSecret));
+            } 
+        }
         public string ClientId { get; set; }
         public string RedirectUri { get; set; }
         public string StateKey { get; set; }
