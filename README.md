@@ -1,9 +1,10 @@
-# Paradify(Spotify Discovery) - Songs to Spotify
+# Paradify - Youtube to Spotify
 
 ![](https://ci.appveyor.com/api/projects/status/29hx49caxvqb2b44?svg=true)
 
-###### a chrome extension & web application for Spotify users
-###### Supports finding the song on Spotify and adds it to your playlist while you are listening it on the following web sites
+[www.paradify.com](http://www.paradify.com/)
+###### Paradify is a web application and Chrome Extension
+###### Supported web sites
 
 * [youtube.com](http://www.youtube.com)
 * [radioparadise.com](http://www.radioparadise.com/)
@@ -17,14 +18,9 @@
 * [karnaval.com](http://www.karnaval.com)
 * [powerfm.com.tr](http://www.powerfm.com.tr)
 * [kralmuzik.com.tr](http://www.kralmuzik.com.tr)
-* or you also can search manually
+* more
 
 ### Projects ###
 
-* Chrome Extensions (client-side)
-* Nodejs(not supported anymore), .Net or MSSQL (server-side)
-
-### Links ###
-###### [Web Site](https://www.spotifydiscovery.com/)
-###### [Demo Page](https://www.spotifydiscovery.com/Search)
-###### Click [here](https://chrome.google.com/webstore/detail/paradify/bocdilfmhiggklhdifohjfghbdncgele) to install
+* Chrome Extension
+* .Net Core
