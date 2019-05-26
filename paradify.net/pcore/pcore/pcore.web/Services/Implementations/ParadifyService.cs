@@ -27,7 +27,7 @@ namespace web.Services.Implementations
             SpotifyWebAPI api = new SpotifyWebAPI() { AccessToken = token.AccessToken, UseAuth = true, TokenType = token.TokenType };
             try
             {
-                return api.CreatePlaylist(id, playlistName);
+                return api.CreatePlaylist(id, playlistName, false, false);
             }
             catch
             {
