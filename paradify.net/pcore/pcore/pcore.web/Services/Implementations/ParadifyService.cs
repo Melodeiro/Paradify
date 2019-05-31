@@ -1,5 +1,6 @@
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Models;
+using System.Collections.Generic;
 using System.Linq;
 using web.Models;
 
@@ -122,7 +123,7 @@ namespace web.Services.Implementations
                 recommendations = api.GetRecommendations(
                          artistId.Split(',').ToList(),
                          null
-                     , trackId.Split(',').ToList()
+                     , trackId.Split(',').ToList(), null, null, null, 18
                      );
             }
             catch
@@ -147,6 +148,20 @@ namespace web.Services.Implementations
             {
                 return null;
             }
+        }
+
+        public SeveralTracks GetTracks(List<string> tracks, Token token)
+        {
+            SpotifyWebAPI api = new SpotifyWebAPI() { AccessToken = token.AccessToken, UseAuth = true, TokenType = token.TokenType };
+            try
+            {
+                return api.GetSeveralTracks(tracks);
+            }
+            catch
+            {
+
+            }
+            return null;
         }
     }
 }

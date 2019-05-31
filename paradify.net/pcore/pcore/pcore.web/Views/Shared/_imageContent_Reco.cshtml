@@ -1,0 +1,29 @@
+﻿@using SpotifyAPI.Web.Models
+@using System.Web
+@model FullTrack
+<div class="image number-playback-pic" playback="@Model.PreviewUrl" trackName="@HttpUtility.JavaScriptStringEncode(Model.Name)">
+    @if (Model.Album.Images.Count > 0)
+    {
+        <img class="track-image" preview-url="@Model.PreviewUrl"
+             src="@Model.Album.Images[0].Url" style="width:100%; border-radius: 4px;vertical-align: middle; border:0;" />
+    }
+    else
+    {
+        <img class="track-image" src="~/src/web/images/head-logo.png" preview-url="@Model.PreviewUrl" />
+    }
+    <div class="track-item-overlay">
+        <div class="center">
+            <a href="javascript:void(0);">
+                <i class="play-pause fas fa-play"></i>
+            </a>
+        </div>
+        <div class="bottom">
+            <a class="recommend" title="Recommend more like this" href="javascript:void(0);" onclick="javascript:recommend('@Model.Id', '@HttpUtility.JavaScriptStringEncode(Model.Name)', '@Model.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(Model.Artists[0].Name)');">
+                <i>R</i>
+            </a>
+            <a href="javascript:void(0);" onclick="javascript:select('@Model.Id', '@HttpUtility.JavaScriptStringEncode(Model.Name)', '@Model.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(Model.Artists[0].Name)', true, false);" ">
+                <i class="fas fa-plus-circle"></i>
+            </a>
+        </div>
+    </div>
+</div>

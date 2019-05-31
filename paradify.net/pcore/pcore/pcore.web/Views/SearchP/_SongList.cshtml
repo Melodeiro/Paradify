@@ -1,59 +1,43 @@
 ﻿@using SpotifyAPI.Web.Models
-@using SpotifyAPI.Web.Models
 @using System.Web
 @model List<FullTrack>
 @if (Model != null)
 {
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" style="width:47px">#</th>
-                <th scope="col" style="width:54px;"><button title="Add all songs to playlist" type="button" class="btn btn-success" onclick="selectAll('@string.Join(",", Model.Select(t => t.Id))')"> + </button></th>
-                <th scope="col">Title - Artist</th>
-                <th scope="col" style="width:100px"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (FullTrack track in Model)
-            {
+<ul class="ulSongList">
+    @foreach (FullTrack track in Model)
+    {
+        <li track-id="@(track.Id)" class="track-item">
 
-                <tr>
-                    <td scope="row">
-                        <div class="number-playback-pic" playback="@track.PreviewUrl" trackName="@HttpUtility.JavaScriptStringEncode(track.Name)">
-                            <span class="player">
-                                <span class="play-pause"></span>
-                            </span>
-                            @if (track.Album.Images.Count > 0)
-                            {
-                                <img class="track-image" src="@track.Album.Images[0].Url" preview-url="@track.PreviewUrl" />
-                            }
-                            else
-                            {
-                                <img class="track-image" src="~/src/web/images/head-logo.png" preview-url="@track.PreviewUrl" />
-                            }
-                        </div>
-                    </td>
-                    <td>
-                        <button title="Add to playlist" type="button" class="btn btn-success" onclick="javascript:select('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)', true, false);"> + </button>
+            @Html.Partial("_imageContent", track)
 
-                    </td>
-                    @{
-                        var artistNames = string.Join(" - ", track.Artists.Select(a => a.Name));
-                        var trackNameArtistNames = string.Format("{0} - {1}", track.Name, artistNames);
-                    }
-                    <td>
-                        <span class="trackName">
-                            <a href="javascript:void(0)" onclick="javascript:select('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)', true, false);">@(trackNameArtistNames)</a>
-                        </span>
-                    <td>
-                        <button type="button" title="Recommend similar" class="btn btn-info" onclick="javascript:recommend('@track.Id', '@HttpUtility.JavaScriptStringEncode(track.Name)', '@track.Artists[0].Id', '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)');"> R </button>
-                    </td>
-                </tr>
+            <div class="title-artist">
+                <div class="title">
+                    <a href="javascript:void(0);" onclick="javascript:select('@track.Id',
+                            '@HttpUtility.JavaScriptStringEncode(track.Name)',
+                            '@track.Artists[0].Id',
+                            '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)',
+                            true,
+                            false);"
+                       title="@track.Name" alt="@track.Name">
+                        @track.Name
+                    </a>
 
-            }
+                </div>
+                <div class="title">
+                    @{string artists = string.Join(",", track.Artists.Select(a => a.Name));}
+                    <a href="javascript:void(0);" onclick="javascript:select('@track.Id',
+                            '@HttpUtility.JavaScriptStringEncode(track.Name)',
+                            '@track.Artists[0].Id',
+                            '@HttpUtility.JavaScriptStringEncode(track.Artists[0].Name)',
+                            true,
+                            false);" title="@artists" alt="@artists">
+                        @artists
+                    </a>
+                </div>
 
-
-
-        </tbody>
-    </table>
+            </div>
+        </li>
+    }
+</ul>
+<div style="clear: both"></div>
 }

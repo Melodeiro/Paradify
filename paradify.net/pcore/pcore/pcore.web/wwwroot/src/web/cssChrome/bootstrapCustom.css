@@ -2,6 +2,11 @@
     background-color: white !important;
 }
 
+a {
+   color: rgba(0,0,0,0.7) !important;
+   text-decoration: none !important;
+}
+
 .center {
     text-align: center;
 }
@@ -23,6 +28,43 @@
 .body {
     padding: 7px;
 }
+
+h4 {
+    font-weight:300 !important;
+}
+
+.row {
+    padding-top: 30px !important;
+}
+
+.intro a {
+    color: #EB6864 !important;
+}
+
+.header {
+    padding: 0 12px !important;
+    background-color: white !important;
+}
+
+    .header .logo {
+        width: 50px;
+    }
+
+    .header .custom-search {
+        border: none;
+        outline: none;
+    }
+
+        .header .custom-search:hover, .header .custom-search:active, .header .custom-search:focus {
+            outline: 0px !important;
+            -webkit-appearance: none;
+            border: none;
+            outline: none;
+        }
+
+    .background-white {
+        background-color: white;
+    }
 
 .navbar {
     padding: 0;
@@ -57,8 +99,100 @@
     width: 20px;
 }
 
-@media (min-width: 450px) and (max-width: 600px) {
-    .form-inline {
+.ulSongList {
+    margin: 0;
+    list-style: none;
+}
+    .ulSongList li {
+        padding: 10px;
+        width: 190px;
+        min-height: 167px;
+        height: 237px;
+        float: left;
+    }
+    .ulSongList .title-artist .title {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size:12px;
+    }
+    .ulSongList .track-item .image {
+        position: relative;
+        margin-bottom: 11px;
+    }
+
+        .ulSongList .track-item .image .track-item-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.61);
+            border-radius: 3px;
+        }
+
+            .ulSongList .track-item .image .track-item-overlay .center {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                margin-top: -13px;
+            }
+
+                .ulSongList .track-item .image .track-item-overlay .center i {
+                    color: white !important;
+                    font-size: 23px;
+                }
+
+            .ulSongList .track-item .image .track-item-overlay .bottom {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin-bottom: 6px;
+                padding: 0 10px 0 0;
+            }
+
+                .ulSongList .track-item .image .track-item-overlay .bottom a.add{
+                    color: white !important;
+                    float:right;
+                    font-size: 23px;    
+
+                }
+                .ulSongList .track-item .image .track-item-overlay .bottom a.recommend {
+                    color: white !important;
+                    float: left;
+                    font-size: 23px;
+                    padding-left: 10px;
+                    font-size:18px;
+                }
+
+
+.no-result-main {
+    position: relative;
+    background: white;
+    height: 200px;
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    resize: both;
+    overflow: auto;
+}
+    .no-result-main .no-result-child {
+        width: 50%;
+        /*transform: translate(-50%, -50%);*/
+        position: absolute;
+        top: 50%;
+        left: 5 0%;
+        padding: 20px;
+        resize: both;
+        overflow: auto;
+    }
+
+    /*@media (min-width: 450px) and (max-width: 600px) {
+        .form-inline {
         width:100%;
     }
 
@@ -69,4 +203,4 @@
         .form-inline button {
             width: 20%;
         }
-}
+}*/

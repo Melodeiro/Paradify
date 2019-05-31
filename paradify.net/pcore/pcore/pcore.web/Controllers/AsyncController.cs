@@ -47,11 +47,18 @@ namespace web.Controllers
 
             if (recommendations != null && recommendations.Tracks != null && recommendations.Tracks.Count > 0)
             {
-                return PartialView("~/Views/Shared/_RecommendedSongListShort.cshtml",
-               recommendations.Tracks);
+                SeveralTracks tracks = _paradifyService.GetTracks(recommendations.Tracks.Select(t => t.Id).ToList(), token);
+
+                if (tracks != null && tracks.Tracks != null && tracks.Tracks.Count > 0)
+                {
+                    return PartialView("~/Views/Shared/_RecommendedSongListShort.cshtml",
+                    tracks.Tracks);
+                }
+
             }
 
-            return null;
+            return PartialView("~/Views/Shared/_RecommendedSongListShort.cshtml",
+                    null);
         }
 
         [HttpGet]
@@ -189,7 +196,7 @@ namespace web.Controllers
             CustomToken token = ViewBag.Token;
 
             return PartialView("~/Views/Shared/PlayingTrack/_PlayingTrack.cshtml"
-                , token.IsTokenEmpty() ? null :_paradifyService.GetPlayingTrack(token));
+                , token.IsTokenEmpty() ? null : _paradifyService.GetPlayingTrack(token));
         }
     }
 }

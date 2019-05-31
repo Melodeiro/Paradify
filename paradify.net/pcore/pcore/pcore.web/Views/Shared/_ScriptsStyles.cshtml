@@ -1,5 +1,5 @@
 ﻿@{
-   const string version = "20";
+    const string version = "20";
 }
 <script src="~/src/web/js/jquery-3.3.1.min.js?v=@(version)"></script>
 <script src="~/src/web/js/bootstrap.min.js?v=@(version)"></script>
@@ -7,8 +7,10 @@
 <script src="~/src/web/js/bootstrapCustom.js?v=@(version)"></script>
 <script src="~/src/web/js/playback.js?v=@(version)"></script>
 <script src="~/src/web/js/ga-track.js?v=@(version)"></script>
+<link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
 <link rel='stylesheet' href='~/src/web/cssChrome/bootstrap.min.css?v=@(version)' type='text/css' />
 <link rel='stylesheet' href='~/src/web/cssChrome/bootstrapCustom.css?v=@(version)' type='text/css' />
+<link rel='stylesheet' href='~/src/web/cssChrome/bootstrapCustom-reco.css?v=@(version)' type='text/css' />
 <link rel='stylesheet' href='~/src/web/cssChrome/searchresult.css?v=@(version)' type='text/css' />
 <link rel='stylesheet' href='~/src/web/cssChrome/animate.css?v=@(version)' type='text/css' />
 <link rel='stylesheet' href='~/src/web/cssChrome/playback.css?v=@(version)' type='text/css' />
@@ -16,10 +18,9 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3218083-16"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
+<script>window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'UA-3218083-16');
-</script>
+    gtag('config', 'UA-3218083-16');</script>
+<script>populateBottom();</script>

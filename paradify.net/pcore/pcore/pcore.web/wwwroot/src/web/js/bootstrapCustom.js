@@ -43,24 +43,11 @@ function select(trackId, trackName, artistId, artistName, fromSonglistClick,
     if (fromSavedClick) {
         gaEvent.track.selectedSaveClick(trackName);
     }
-
-    if (fromSonglistClick || fromRecentlyPlayedTracksClick || fromSonglistClick || fromSavedClick) {
-        loadRecommendedSongs(trackId, artistId, function (response) {
-            $('.custom-recommendedSongs').html(response);
-            $('.custom-recommendedSongs').show();
-            $('.custom-title-recommendedSongs').html('Recommended based on ' + trackName);
-            $('.custom-title-recommendedSongs').show();
-        });
-    }
-
 }
 
 function recommend(trackId, trackName, artistId) {
 
-    animateByClass('custom-scroll-recommendedSongs');
-    $('.custom-title-recommendedSongs').html('Recommended based on ' + trackName);
-    $('.custom-title-recommendedSongs').show();
-
+   
     loadRecommendedSongs(trackId, artistId, function (response) {
         $('.custom-recommendedSongs').html(response);
         $('.custom-recommendedSongs').show();
@@ -312,12 +299,7 @@ function loadSearch() {
     $(document).ready(function () {
         loadPlaylist();
 
-        loadRecentlyPlayedTracksShort(function () {
-            $('.custom-title-recentlyPlayedTracks').show();
-            $('.custom-recentlyPlayedTracks').show();
-            $('.custom-recentlyPlayedTracks').html(variable.recentlyPlayedTracks);
-            initPlayback();
-        });
+       
 
     });
 }
@@ -449,5 +431,7 @@ function checkLoginPoup() {
 $(document).ready(function () {
 
     customModal.init();
-
 });
+
+
+

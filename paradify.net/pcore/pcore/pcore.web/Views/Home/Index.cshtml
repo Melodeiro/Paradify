@@ -1,12 +1,9 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@using pcore.web
-
+﻿@using pcore.web
 @section MetaTags {
     @if (!string.IsNullOrEmpty(ViewBag.HomeUrl))
     {
         <link rel="canonical" href="@(ViewBag.HomeUrl)">
     }
 }
+ 
+    @Html.Partial("_Intro")

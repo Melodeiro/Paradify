@@ -7,14 +7,19 @@
     });
 
     this.initPlayback = function () {
-        $(".number-playback-pic[playback^='http']").each(function () {
+        initImageMouseOver();
+        $(".number-playback-pic").each(function () {
             var url = $(this).attr("playback");
             var trackName = $(this).attr("trackName");
 
+            var first = $(this).find(defaults.playPauseClass)[0];
             if (url != undefined && url != '') {
-                var first = $(this).find(defaults.playPauseClass)[0];
+
                 initClick(first, url, trackName);
-                initHover(first);
+                //initHover(first);
+            }
+            else {
+                $(first).removeClass('fa-play');
             }
         });
     }
@@ -28,15 +33,15 @@
 
         $(elem).click(function () {
 
-            if ($(elem).hasClass('pause')) {
+            if ($(elem).hasClass('fa-pause')) {
                 pause(preview_url);
-                $(elem).removeClass('pause');
-                $(elem).addClass('play');
+                $(elem).removeClass('fa-pause');
+                $(elem).addClass('fa-play');
             }
             else {
                 play(preview_url);
-                $(elem).removeClass('play');
-                $(elem).addClass('pause');
+                $(elem).removeClass('fa-play');
+                $(elem).addClass('fa-pause');
                 gaEvent.track.play(trackName);
             }
         });
@@ -50,15 +55,29 @@
             }
 
             $(elem).css('background-color', 'black');
-            $(elem).fadeTo("fast", 1, function () {
+            //$(elem).fadeTo("fast", 1, function () {
 
-            });
+            //});
         });
 
         $(elem).mouseout(function () {
             $(elem).css('background-color', 'none');
-            $(elem).fadeTo("fast", 0, function () {
+            //$(elem).fadeTo("fast", 0, function () {
+            //});
+        });
+    }
+
+    var initImageMouseOver = function() {
+        $(".track-item").each(function () {
+
+            $(this).mouseover(function () {
+                $(this).find('.track-item-overlay').show();
             });
+
+            $(this).mouseout(function () {
+                $(this).find('.track-item-overlay').hide();
+            });
+
         });
     }
 

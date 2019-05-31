@@ -78,7 +78,7 @@ namespace web.Controllers
 
         private SearchItem Search(string query, Token token)
         {
-            return _paradifyService.SearchResult(query, token);
+            return _paradifyService.SearchResult(query, token, 35);
         }
 
         private void SetSearchReturnUrl(string search)

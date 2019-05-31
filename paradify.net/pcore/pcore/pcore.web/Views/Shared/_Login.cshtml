@@ -1,27 +1,32 @@
 ﻿@using SpotifyAPI.Web.Models
 @model PrivateProfile
-
+<div class="nav-item dropdown">
 @if (Model == null || string.IsNullOrEmpty(Model.Id))
 {
-    <span id="profile_id">
-        <a href="javascript:void(0)" onclick="redirectToLogin('@Url.Action("Index", "Authorize", new { fromIFrame = true })')" class="nav-link custom-link-login-popup">Login</a>
-        @(Html.ActionLink("Login", "Index", "Authorize", null, new { id = "loginLink", @class = "nav-link custom-link-login" }))
-    </span>
-    <script>
-        populateLoginLinks();
-    </script>
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="fa fa-user" style="font-size:20px;"></span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    @(Html.ActionLink("Login", "Index", "Authorize", null, new { id = "loginLink", @class = "dropdown-item" }))
+    </div>
 }
 else
 {
     var firstImage = Model.Images.FirstOrDefault();
 
-    if (firstImage != null)
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    @if (firstImage != null)
     {
+        <span>@(Model.DisplayName != null ? Model.DisplayName : Model.Id)</span>
         <img id="profile_pic" class="profile_pic" src="@firstImage.Url" />
     }
-    <span id="profile_id">
-        @(Model.DisplayName != null ? Model.DisplayName : Model.Id)
-        @(Html.ActionLink("Logout", "Logout", "Authorize"))
-    </span>
-
+    else
+    {
+        <span class="fa fa-user" style="font-size:20px;"></span>
+    }
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    @(Html.ActionLink("Logout", "Logout", "Authorize", null, new { @class = "dropdown-item" }))
+    </div>
 }
+</div>

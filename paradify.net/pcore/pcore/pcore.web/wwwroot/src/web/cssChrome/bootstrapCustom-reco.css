@@ -1,0 +1,74 @@
+﻿.ulSongList-reco {
+    margin: 0;
+    list-style: none;
+}
+    .ulSongList-reco li {
+        padding: 10px;
+        width: 135px;
+        height: 182px;
+        float: left;
+    }
+    .ulSongList-reco .title-artist .title {
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size:12px;
+    }
+    .ulSongList-reco .track-item .image {
+        position: relative;
+        margin-bottom: 11px;
+    }
+
+        .ulSongList-reco .track-item .image .track-item-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.61);
+            border-radius: 3px;
+        }
+
+            .ulSongList-reco .track-item .image .track-item-overlay .center {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                margin-top: -13px;
+            }
+
+                .ulSongList-reco .track-item .image .track-item-overlay .center i {
+                    color: white !important;
+                    font-size: 23px;
+                }
+
+            .ulSongList-reco .track-item .image .track-item-overlay .bottom {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin-bottom: 6px;
+                padding: 0 10px 0 0;
+            }
+                .ulSongList-reco .track-item .image .track-item-overlay .bottom a{
+                    color: white !important;
+                    float:right;
+                    font-size: 23px;    
+
+                }
+
+                    .ulSongList-reco .track-item .image .track-item-overlay .bottom a.add {
+                        color: white !important;
+                        float: right;
+                        font-size: 23px;
+                    }
+
+                    .ulSongList-reco .track-item .image .track-item-overlay .bottom a.recommend {
+                        color: white !important;
+                        float: left;
+                        font-size: 23px;
+                        padding-left: 10px;
+                        font-size: 18px;
+                    }

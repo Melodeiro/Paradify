@@ -1,0 +1,22 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top header">
+    <a class="navbar-brand" href="~/"><img src="~/src/web/images/head-logo.png" class="logo" /></a>
+    <a class="nav-link" href="~/">Paradify</a>
+    <script>populateOpenInWeb();</script>
+    @using (Html.BeginForm("Index", "SearchP", FormMethod.Get, new { @class = "form-inline my-2 my-lg-0" }))
+    {
+        <i class="fa fa-search"></i><input id="q" name="q" class="form-control mr-sm-2  is-valid custom-search" autocomplete="off" type="text" placeholder="search song" value="@(Context.Request.Query["q"])"> @*<button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>*@
+    }
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+            </li>
+        </ul>
+        <span class="">
+            <a class="nav-item active custom-li-me" id="profile_login"></a>
+        </span>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>

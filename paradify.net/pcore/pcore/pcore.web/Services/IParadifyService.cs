@@ -1,4 +1,5 @@
-﻿using SpotifyAPI.Web.Models;
+﻿using System.Collections.Generic;
+using SpotifyAPI.Web.Models;
 using web.Models;
 
 namespace web.Services
@@ -12,5 +13,6 @@ namespace web.Services
         CustomSimpleTrack GetNewReleasedTracks(CustomToken token, string countryCode);
         Recommendations GetRecommendations(CustomToken token, string trackId, string artistId);
         PlaybackContext GetPlayingTrack(CustomToken token);
+        SeveralTracks GetTracks(List<string> tracks, Token token);
     }
 }
