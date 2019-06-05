@@ -22,6 +22,7 @@ namespace pcore.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDistributedMemoryCache();
+            services.AddMemoryCache();
 
             services.AddSession(options =>
             {

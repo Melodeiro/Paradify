@@ -1,0 +1,14 @@
+﻿@using web.Models
+@model List<String>
+<div style="text-align: justify">
+    <ul class="ul-genres">
+        @{
+            foreach (var item in Model)
+            {
+                <li>
+                    @(Html.ActionLink(item, "Index", "SearchP", new {q = item}, new {rel = "nofollow"}))
+                </li>
+            }
+        }
+    </ul>
+</div>

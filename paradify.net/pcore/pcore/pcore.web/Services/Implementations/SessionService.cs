@@ -46,7 +46,7 @@ namespace web.Services.Implementations
 
         public void SetToken(CustomToken token)
         {
-           _httpContextAccessor.HttpContext.Session.SetObject("token", token);
+            _httpContextAccessor.HttpContext.Session.SetObject("token", token);
         }
 
         public void DeleteToken()
@@ -57,7 +57,7 @@ namespace web.Services.Implementations
         public string getSession(string key)
         {
             var sessionValue = _httpContextAccessor.HttpContext.Session.GetString(key);
-    
+
             return sessionValue;
         }
 

@@ -1,0 +1,15 @@
+﻿@using web.Models
+@using System.Web
+@model web.Models.SearchResult
+<div class="no-result-main">
+    <div class="no-result-child text-center">
+        <div class="fa fa-volume-up"></div>
+        <strong>Ooops!</strong>
+        <div>Your search <strong>"@(Model.query)"</strong> did not match any titles, artists in Spotify</div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+   gaEvent.track.notFound('@HttpUtility.JavaScriptStringEncode(Model.query)');
+</script>

@@ -26,13 +26,13 @@ namespace web.Services.Implementations
 
         public void SetToken(string accessToken, string refreshToken, double expiresIn, TokenCredentialType tokenCredentialType)
         {
-            _cookieManager.WriteCookie("access_token", string.IsNullOrEmpty(accessToken) ? string.Empty: accessToken, DateTime.Now.AddSeconds(expiresIn).AddSeconds(-60));
+            _cookieManager.WriteCookie("access_token", string.IsNullOrEmpty(accessToken) ? string.Empty : accessToken, DateTime.Now.AddSeconds(expiresIn).AddSeconds(-60));
             _cookieManager.WriteCookie("refresh_token", string.IsNullOrEmpty(refreshToken) ? string.Empty : refreshToken, DateTime.Now.AddYears(1));
             _cookieManager.WriteCookie("token_type", string.IsNullOrEmpty(tokenCredentialType.ToString()) ? string.Empty : tokenCredentialType.ToString(), DateTime.Now.AddYears(1));
         }
 
         public void DeleteToken()
-        { 
+        {
 
             _cookieManager.DeleteCookie("access_token");
             _cookieManager.DeleteCookie("refresh_token");

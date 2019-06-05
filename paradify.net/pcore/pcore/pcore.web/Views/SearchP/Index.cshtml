@@ -4,62 +4,43 @@
 @model web.Models.SearchResult
 
 @section MetaTags
-    {
+{
     <meta name="robots" content="noindex, nofollow" />
     <meta name="googlebot" content="noindex, nofollow">
 }
 
-@if (Model != null && !string.IsNullOrEmpty(Model.query))
+@if (Model != null && !string.IsNullOrEmpty(Model.query)
+   && !Model.SearchItem.HasError() && Model.SearchItem.Tracks.Total > 0)
 {
-    if (Model != null && Model.SearchItem != null)
-    {
-        if (!Model.SearchItem.HasError() && Model.SearchItem.Tracks.Total > 0)
-        {
-            <div class="col-lg-9">
-
-                <div>
-                    <h4 class="text-center">@Model.query</h4>
-                    @Html.Partial("_SongList", Model.SearchItem.Tracks.Items)
-                </div>
-
-                @{var top5 = Model.SearchItem.Tracks.Items.Take(1);}
-            </div>
-            <div class="col-lg-3 custom-scroll-recommendedSongs">
-                <h4 class="custom-title-recommendedSongs text-center" style="display:none;">Recommended</h4>
-                <span class="custom-recommendedSongs" style="display:none;"></span>
-            </div>
-            <script>loadSearch();</script>
+    <div class="col-lg-9">
+        <div>
+            <h4 class="text-center">@Model.query</h4>
+            @Html.Partial("_SongList", Model.SearchItem.Tracks.Items)
+        </div>
+    </div>
+    <div class="col-lg-3 custom-scroll-recommendedSongs">
+        <h4 class="custom-title-recommendedSongs text-center" style="display:none;">Recommended</h4>
+        <span class="custom-recommendedSongs" style="display:none;">
             <script type="text/javascript">
-                gaEvent.track.searched('@HttpUtility.JavaScriptStringEncode(Model.query)');
-            </script>
-            <script type="text/javascript">
-                loadRecommendedSongs('@(string.Join(",", top5.Select(t => t.Id)))',
-                '@string.Join(",", top5.Select(t => t.Artists.First().Id))', function (response) {
+                @{var topxTracks = Model.SearchItem.Tracks.Items.Take(2);}
+                loadRecommendedSongs('@(string.Join(",", topxTracks.Select(t => t.Id)))',
+                '@string.Join(",", topxTracks.Select(t => t.Artists.First().Id))', function (response) {
                     $('.custom-recommendedSongs').html(response);
                     $('.custom-recommendedSongs').show();
                     $('.custom-title-recommendedSongs').show();
                     initPlayback();
                 });
             </script>
-        }
-        else
-        {
-            if (!Model.IsTokenEmpty)
-            {
+        </span>
+    </div>
+    <script>loadSearch();</script>
+    <script type="text/javascript">
+        gaEvent.track.searched('@HttpUtility.JavaScriptStringEncode(Model.query)');
+    </script>
 
-                <div class="no-result-main">
-                    <div class="no-result-child text-center">
-                        <div class="fa fa-volume-up"></div>
-                        <strong>Ooops!</strong>
-                        <div>Your search <strong>"@(Model.query)"</strong> did not match any titles, artists in Spotify</div>
-                    </div>
 
-                </div>
-
-                <script type="text/javascript">
-                    gaEvent.track.notFound('@HttpUtility.JavaScriptStringEncode(Model.query)');
-                </script>
-            }
-        }
-    }
+}
+else
+{
+    @Html.Partial("_NoResult", Model)
 }

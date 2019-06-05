@@ -1,5 +1,7 @@
+using Microsoft.Extensions.Caching.Memory;
 using SpotifyAPI.Web;
 using SpotifyAPI.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using web.Models;
@@ -8,11 +10,20 @@ namespace web.Services.Implementations
 {
     class ParadifyService : IParadifyService
     {
+        public IMemoryCache MemoryCache { get; }
+
+        public ParadifyService(IMemoryCache memoryCache)
+        {
+            MemoryCache = memoryCache;
+        }
+
         public SearchItem SearchResult(string query, Token token, int limit = 10, int offset = 0, string market = "")
         {
             SpotifyWebAPI api = new SpotifyWebAPI() { AccessToken = token.AccessToken, UseAuth = true, TokenType = token.TokenType };
             try
+
             {
+
                 SearchItem searchItems = api.SearchItems(query, SpotifyAPI.Web.Enums.SearchType.Track, limit);
                 return searchItems;
             }
@@ -134,11 +145,14 @@ namespace web.Services.Implementations
             return recommendations;
         }
 
-
         public PlaybackContext GetPlayingTrack(CustomToken token)
         {
-            SpotifyWebAPI api = new SpotifyWebAPI() { 
-            AccessToken = token.AccessToken, UseAuth = true, TokenType = token.TokenType };
+            SpotifyWebAPI api = new SpotifyWebAPI()
+            {
+                AccessToken = token.AccessToken,
+                UseAuth = true,
+                TokenType = token.TokenType
+            };
 
             try
             {
@@ -162,6 +176,31 @@ namespace web.Services.Implementations
 
             }
             return null;
+        }
+
+        public RecommendationSeedGenres GetGenres(Token token)
+        {
+            RecommendationSeedGenres model;
+
+            if (!MemoryCache.TryGetValue("genres", out model))
+            {
+                SpotifyWebAPI api = new SpotifyWebAPI() { AccessToken = token.AccessToken, UseAuth = true, TokenType = token.TokenType };
+                try
+                {
+                    model = api.GetRecommendationSeedsGenres();
+
+                    var cacheEntryOptions = new MemoryCacheEntryOptions()
+                        .SetAbsoluteExpiration(new TimeSpan(1, 0, 0));
+
+                    // Save data in cache.
+                    MemoryCache.Set("genres", model, cacheEntryOptions);
+                }
+                catch
+                {
+
+                }
+            }
+            return model;
         }
     }
 }

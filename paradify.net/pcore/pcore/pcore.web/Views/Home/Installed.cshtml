@@ -1,9 +1,8 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<div class="col-lg-12 text-center">
+﻿<div class="col-lg-12 text-center">
     <h1 class="text-center">
         Thank you for installing Paradify
     </h1>
     <p style="font-size: 17px;    color: #788000;    font-weight: bold;">Let's start! Visit any of the supported web sites, play a song and then click on Paradify extension <img src="~/src/web/images/16.png"></p>
 </div>
+
+@await Html.PartialAsync("_Intro")

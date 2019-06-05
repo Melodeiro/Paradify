@@ -166,7 +166,7 @@ function start() {
       );
     } else {
       var url = String.format("{0}?fromChrome=true", defaults.url);
-      openIframe(url);
+      redirect(url);
     }
   });
 }

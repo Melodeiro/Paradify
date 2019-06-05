@@ -47,13 +47,13 @@ function select(trackId, trackName, artistId, artistName, fromSonglistClick,
 
 function recommend(trackId, trackName, artistId) {
 
-   
     loadRecommendedSongs(trackId, artistId, function (response) {
-        $('.custom-recommendedSongs').html(response);
-        $('.custom-recommendedSongs').show();
+        if (response != '') {
+            $('.custom-recommendedSongs').html(response);
+            $('.custom-recommendedSongs').show();
         
-        initPlayback();
-        
+            initPlayback();
+        }
     });
 
     gaEvent.track.recommend(trackName);
@@ -190,7 +190,8 @@ var customModal = {
             customModal.closedByUser = false;
         });
 
-         this.getMe();
+        this.getMe();
+        this.getGenres();
     },
 
     close: function () {
@@ -228,7 +229,16 @@ var customModal = {
             error: function (xhr, textStatus, err) {
             }
         });
-    }
+    },
+
+    getGenres: function() {
+        loadGenres(
+            function (response) {
+                $('#genres').html(response);
+                $('#genres').show();
+            }
+        );
+    },
 }
 
 var customNotify = {
@@ -426,6 +436,21 @@ function checkLoginPoup() {
         clearInterval(this.timer);
         location.href = location.href;
     }
+}
+
+function loadGenres(callback) {
+    $.ajax({
+        type: "GET",
+        url: this.searchPath + "/Async/GetGenres",
+        success: function (response) {
+            if (response != null && response != '') {
+                callback(response);
+            }
+        },
+        error: function (xhr, textStatus, err) {
+
+        }
+    });
 }
 
 $(document).ready(function () {

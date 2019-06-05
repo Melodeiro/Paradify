@@ -255,11 +255,11 @@ function readSpotify() {
 }
 
 function readBeatport() {
-    var track = document.getElementsByClassName('primary-title')[0].innerHTML;
+        var track = document.getElementsByClassName('track-title__primary')[0].innerHTML;
 
-    var artist = document.getElementsByClassName('track-artist')[0].getElementsByTagName('a')[0].innerHTML;
+        var artist = document.getElementsByClassName('track-artists__artist')[0].innerHTML;
 
-    var result = { track: track, artist: artist };
+        var result = { track: track, artist: artist };
 
     return result;
 }

@@ -174,22 +174,6 @@ namespace web.Controllers
         }
 
         [HttpGet]
-        [ServiceFilter(typeof(FilterClientToken))]
-        public ActionResult GetNewReleasedTracks(string countryCode)
-        {
-            CustomToken token = ViewBag.Token;
-
-            if (token.IsTokenEmpty())
-            {
-                return null;
-            }
-
-            var result = _paradifyService.GetNewReleasedTracks(token, countryCode);
-
-            return PartialView("~/Views/Shared/_NewReleasedTracks.cshtml", result);
-        }
-
-        [HttpGet]
         [ServiceFilter(typeof(FilterUserToken))]
         public ActionResult GetPlayingTrack()
         {
@@ -197,6 +181,29 @@ namespace web.Controllers
 
             return PartialView("~/Views/Shared/PlayingTrack/_PlayingTrack.cshtml"
                 , token.IsTokenEmpty() ? null : _paradifyService.GetPlayingTrack(token));
+        }
+
+        [HttpGet]
+        [ServiceFilter(typeof(FilterClientToken))]
+        public ActionResult GetGenres()
+        {
+            List<string> model = null;
+
+            CustomToken token = ViewBag.Token;
+
+            if (!token.IsTokenEmpty())
+            {
+                RecommendationSeedGenres recommendationSeedGenres =
+                    _paradifyService.GetGenres(token);
+
+                if (recommendationSeedGenres != null && recommendationSeedGenres.Genres != null
+                    && recommendationSeedGenres.Genres.Count > 0)
+                {
+                    model = recommendationSeedGenres.Genres;
+                }
+            }
+
+            return PartialView("~/Views/Shared/Genres/_Genres.cshtml", model);
         }
     }
 }

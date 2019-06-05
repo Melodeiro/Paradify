@@ -14,5 +14,6 @@ namespace web.Services
         Recommendations GetRecommendations(CustomToken token, string trackId, string artistId);
         PlaybackContext GetPlayingTrack(CustomToken token);
         SeveralTracks GetTracks(List<string> tracks, Token token);
+        RecommendationSeedGenres GetGenres(Token token);
     }
 }

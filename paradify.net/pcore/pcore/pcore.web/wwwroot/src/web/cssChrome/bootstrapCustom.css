@@ -190,17 +190,18 @@ h4 {
         resize: both;
         overflow: auto;
     }
+   
+.ul-genres {
+    display: inline;
+    list-style: none;
+    padding: 0;
+}
 
-    /*@media (min-width: 450px) and (max-width: 600px) {
-        .form-inline {
-        width:100%;
+    .ul-genres li {
+        display: inline;
+        padding: 0 5px;
     }
-
-    .form-inline input {
-        width: 80%;
-    }
-
-        .form-inline button {
-            width: 20%;
-        }
-}*/
+        .ul-genres li a {
+            color: #535361 !important;
+            font-size: 12px;
+        }   
