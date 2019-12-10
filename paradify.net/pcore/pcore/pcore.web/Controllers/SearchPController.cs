@@ -47,6 +47,7 @@ namespace web.Controllers
             if (!_search.NullCheck())
             {
                 _search = _search.Decode();
+               
 
                 ViewBag.Title = string.Format("{0} - {1}", _search, Settings.SingleTitle);
 
@@ -78,7 +79,8 @@ namespace web.Controllers
 
         private SearchItem Search(string query, Token token)
         {
-            return _paradifyService.SearchResult(query, token, 35);
+            query = Helper.CleanQuery(query);
+            return _paradifyService.SearchResult(query, token, 48);
         }
 
         private void SetSearchReturnUrl(string search)
