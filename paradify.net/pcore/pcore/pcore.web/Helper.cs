@@ -2,7 +2,7 @@
 {
     public class Helper
     {
-        static string[] wordsToRemove = new string[] { "feat", "-", "&" };
+        static string[] wordsToRemove = new string[] { "feat", "-", "&", " x " };
 
         public static string SetSearchReturnUrl(string controllerName, string searhQuery)
         {
@@ -13,7 +13,7 @@
         {
             foreach (string word in wordsToRemove)
             {
-                searhQuery = searhQuery.Replace(word, "");
+                searhQuery = searhQuery.ToLower().Replace(word, "");
             }
 
             return searhQuery;
